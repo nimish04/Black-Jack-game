@@ -1,0 +1,20 @@
+gcc server.c -o server
+gcc header.h -o header
+gcc client.c -o c1
+gcc client.c -o c2
+gcc client.c -o c3
+gcc common.c -o common
+
+
+//On Terminal #1
+./server
+
+//On terminal #2
+./c1 127.0.0.1
+
+//On Terminal #3
+./c2 127.0.0.1
+
+//On terminal #4
+./c3 127.0.0.1
+
