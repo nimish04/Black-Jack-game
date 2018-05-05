@@ -29,8 +29,6 @@ void Initialize_random_array(){
 		random_array[i] = i;
 	}
 
-	//srand(time(NULL));
-
 	//Shuffling the array
 	for(i=0;i<52;i++){
 		int j = rand() % (i+1);
@@ -129,26 +127,22 @@ void start_game(int players){
 	printf("%d %s\n",pc[n1].number,name1);
 	printf("%d %s\n",pc[n2].number,name2);
 	char buffer[BUFFER_SIZE];
-	
-	//strcat(buffer,name1);
 	int nwritten;
-
 	int temp;
 	temp = global_track;
 	
-    /////////////////////// For the first client /////////////////////////
+	// For the first client
 
     int n_first = 0;
     strcpy(buffer,"You are the first player, press HIT/STAND \n");
 	if (BUFFER_SIZE != (nwritten = write(clientFd[0], buffer, BUFFER_SIZE)))
 			{
 				printf("Error! Couldn't write to player \n");
-				//close(clientFd[i]);
+				
 				return;
 	}
 
 	 if (0 > (nwritten = read(clientFd[0], buffer, BUFFER_SIZE))){
-            /* error("Error reading from client"); */
             printf("Response from socket  timed out\n");
             
      }
@@ -158,7 +152,7 @@ void start_game(int players){
 	     		n_first++;
 	     		printf("\nUser1 has chosen HIT, you have another chance!\n");
 	     		 if (0 > (nwritten = read(clientFd[0], buffer, BUFFER_SIZE))){
-                  /* error("Error reading from client"); */
+               
                   printf("Response from socket  timed out\n");
             
             }
@@ -191,7 +185,7 @@ void start_game(int players){
 
      printf("First player has chosen %d  cards\n",n_first);
 
-	//////////////////////// FOR THE second client ///////////////////////
+	// FOR THE second client 
 
     strcpy(buffer,"Player 1 has already chosen cards, your turn press HIT/STAND!\n");
 	int n_second = 0;
@@ -199,12 +193,10 @@ void start_game(int players){
 	if (BUFFER_SIZE != (nwritten = write(clientFd[1], buffer, BUFFER_SIZE)))
 			{
 				printf("Error! Couldn't write to player \n");
-				//close(clientFd[i]);
 				return;
 	}
 
 	 if (0 > (nwritten = read(clientFd[1], buffer, BUFFER_SIZE))){
-            /* error("Error reading from client"); */
             printf("Response from socket  timed out\n");
             
      }
@@ -215,7 +207,6 @@ void start_game(int players){
 	     		n_second++;
 	     		printf("\nUser 2 has chosen HIT, you have another chance!\n");
 	     		 if (0 > (nwritten = read(clientFd[1], buffer, BUFFER_SIZE))){
-                  /* error("Error reading from client"); */
                   printf("Response from socket  timed out\n");
             
             }
@@ -251,7 +242,7 @@ void start_game(int players){
 
      printf("Second player has chosen %d  cards\n", (n_second));
 
-     //////////////////////// For the third client /////////////////////////////
+   // For the third client 
 
     strcpy(buffer,"Player 2 has already chosen cards, your turn press HIT/STAND!\n");
 	int n_third = 0;
@@ -259,12 +250,11 @@ void start_game(int players){
 	if (BUFFER_SIZE != (nwritten = write(clientFd[2], buffer, BUFFER_SIZE)))
 			{
 				printf("Error! Couldn't write to player \n");
-				//close(clientFd[i]);
+				
 				return;
 	}
 
 	 if (0 > (nwritten = read(clientFd[2], buffer, BUFFER_SIZE))){
-            /* error("Error reading from client"); */
             printf("Response from socket  timed out\n");
             
      }
@@ -274,7 +264,6 @@ void start_game(int players){
 	     		n_third++;
 	     		printf("\nUser 3 has chosen HIT, you have another chance!\n");
 	     		 if (0 > (nwritten = read(clientFd[2] , buffer, BUFFER_SIZE))){
-                  /* error("Error reading from client"); */
                   printf("Response from socket  timed out\n");
             
             }
